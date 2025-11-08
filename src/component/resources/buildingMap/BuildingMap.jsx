@@ -19,8 +19,10 @@ function formatFloor(f) {
 }
 
 export default function BuildingMap() {
-  const [selectedBuilding, setSelectedBuilding] = useState(null);
-  const [selectedFloor, setSelectedFloor] = useState(null);
+  // 최초 렌더링 시 1호관 1층을 기본값으로 설정
+  const defaultBuilding = BUILDINGS.find(b => b.id === 1) || BUILDINGS[0];
+  const [selectedBuilding, setSelectedBuilding] = useState(defaultBuilding);
+  const [selectedFloor, setSelectedFloor] = useState(1);
 
   const handleBuildingClick = (building) => {
     setSelectedBuilding(building);
