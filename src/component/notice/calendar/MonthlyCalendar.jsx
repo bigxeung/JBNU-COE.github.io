@@ -103,7 +103,7 @@ function MonthlyCalendar() {
   const eventStyleGetter = (event) => {
     return {
       style: {
-        backgroundColor: '#4CAF50',
+        backgroundColor: 'rgba(0, 76, 165, 1)',
         borderRadius: '4px',
         border: 'none',
         color: 'white',

@@ -54,7 +54,7 @@
   align-items: center;
   margin-bottom: 20px;
   padding: 15px 20px;
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: rgba(0, 76, 165, 1);
   border-radius: 12px;
 }
 
@@ -105,7 +105,7 @@
 }
 
 .rbc-today {
-  background-color: rgba(76, 175, 80, 0.1);
+  background-color: rgba(0, 76, 165, 0.1);
 }
 
 .rbc-off-range-bg {
@@ -113,11 +113,11 @@
 }
 
 .has-event {
-  background-color: rgba(76, 175, 80, 0.05);
+  background-color: rgba(0, 76, 165, 0.05);
 }
 
 .rbc-selected-cell {
-  background-color: rgba(76, 175, 80, 0.15);
+  background-color: rgba(0, 76, 165, 0.15);
 }
 
 .rbc-event {
@@ -188,7 +188,7 @@
 
 /* 더보기 버튼 스타일 */
 .rbc-show-more {
-  color: #4CAF50;
+  color: #004ca5;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
@@ -198,7 +198,7 @@
 
 .rbc-show-more:hover {
   text-decoration: underline;
-  background-color: rgba(76, 175, 80, 0.1);
+  background-color: rgba(0, 76, 165, 0.1);
   border-radius: 3px;
 }
 
@@ -230,7 +230,7 @@
 
 .selected-date {
   font-size: 1.1rem;
-  color: #4CAF50;
+  color: #004ca5;
   font-weight: 600;
 }
 
@@ -263,7 +263,7 @@
   width: 6px;
   min-width: 6px;
   height: auto;
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: rgba(0, 76, 165, 1);
   border-radius: 3px;
 }
 

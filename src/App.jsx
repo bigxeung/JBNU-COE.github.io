@@ -20,6 +20,7 @@ import FacilityInspection from './component/resources/facilityInspection/Facilit
 import Finance from './component/resources/finance/Finance.jsx';
 import Pledge from './component/pledge/pledge.jsx';
 import Report from './component/contact/report/Report.jsx';
+import BoardInquiry from './component/contact/boardInquiry/BoardInquiry.jsx';
 import HeaderBar from './layouts/headerBar/headerBar.jsx';
 import Banner from './layouts/banner/banner.jsx';
 import TopBar from './layouts/topBar/topBar.jsx';
@@ -52,6 +53,7 @@ function App() {
               <Route path="/benefits" element={<Benefits />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/contact/report" element={<Report />} />
+              <Route path="/contact/board-inquiry" element={<BoardInquiry />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/resources/map" element={<BuildingMap />} />
               <Route path="/resources/constitution" element={<Constitution />} />
