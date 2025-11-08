@@ -33,7 +33,7 @@ function App() {
   useLayoutResize();
   
   return (
-    <BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/FeeL_WEB' : '/'}>
+    <BrowserRouter basename="/">
       <div className="app-container">
         <TopBar />
         <div id="header-container" className='header-container'>

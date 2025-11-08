@@ -23,9 +23,20 @@ html, body, #root{
   display: flex;
   flex-direction: column;
 }
-
+.top-bar-container{
+  height: 10vh;
+}
 .header-container{
   height: 10vh;
+}
+
+/* 모바일: topBar 이후 여백 없이 header-container 표시 */
+@media (max-width: 767px) {
+  .header-container {
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .App-link {

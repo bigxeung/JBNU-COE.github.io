@@ -6,7 +6,7 @@ function TopBar() {
   return (
     <div className="top-bar">
       <div className="top-bar-left">
-        <span className="top-bar-text">전북대학교 공과대학 학생회 FeeL</span>
+        <span className="top-bar-text">전북대학교 공과대학 학생회</span>
         <span className="top-bar-divider">|</span>
         <span className="top-bar-text">대표전화: 063-270-2283</span>
       </div>

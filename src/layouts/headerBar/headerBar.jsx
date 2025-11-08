@@ -27,7 +27,7 @@ function HeaderBar({ isMobile }) {
   }, []);
 
   const p = (location.pathname || '').toLowerCase();
-  const isExempt = (p === '/' || p === '/about/intro' || p === '/FeeL_WEB');
+  const isExempt = (p === '/' || p === '/about/intro');
   const shouldBeBlueText = isAtTop && !isExempt;
 
   return (
