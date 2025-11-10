@@ -170,7 +170,7 @@ function HeaderBar({ isMobile }) {
                       <button className={`mobile-nav-button ${activeMenu === 'contact' ? 'active' : ''}`} onClick={() => toggleMenu('contact')}>문의</button>
                       {activeMenu === 'contact' && (
                         <ul className="mobile-submenu">
-                          <li><Link to="/contact/board-help" onClick={() => setMenuOpen(false)}>게시판 이용 문의</Link></li>
+                          <li><Link to="/contact/board-inquiry" onClick={() => setMenuOpen(false)}>게시판 이용 문의</Link></li>
                           <li><Link to="/contact/report" onClick={() => setMenuOpen(false)}>민원 접수</Link></li>
                         </ul>
                       )}
