@@ -142,8 +142,7 @@ function HeaderBar({ isMobile }) {
                       {activeMenu === 'about' && (
                         <ul className="mobile-submenu">
                           <li><Link to="/about/intro" onClick={() => setMenuOpen(false)}>공과대학 학생회 소개</Link></li>
-                          <li><Link to="/about/greeting" onClick={() => setMenuOpen(false)}>인사말</Link></li>
-                          <li><Link to="/about/org" onClick={() => setMenuOpen(false)}>조직도</Link></li>
+                          <li><Link to="/about/organization" onClick={() => setMenuOpen(false)}>조직도</Link></li>
                         </ul>
                       )}
                     </li>
