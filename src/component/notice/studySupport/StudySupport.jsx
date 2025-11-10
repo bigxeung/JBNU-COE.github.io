@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import './studySupport.css';
 
 // 월별 데이터 구조: 3월~11월
@@ -14,6 +14,7 @@ const MONTH_NAMES = {
 export default function StudySupport() {
   const [selectedMonth, setSelectedMonth] = useState(3);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isImageZoomed, setIsImageZoomed] = useState(false);
 
   // 선택된 월의 이미지 경로 배열 생성
   const getMonthImages = (month) => {
@@ -38,6 +39,37 @@ export default function StudySupport() {
   };
 
   const handleNextImage = () => {
+    setCurrentImageIndex((prev) => (prev === currentImages.length - 1 ? 0 : prev + 1));
+  };
+
+  // 이미지 확대/축소 핸들러
+  const handleImageClick = () => {
+    setIsImageZoomed(true);
+  };
+
+  const handleCloseZoom = () => {
+    setIsImageZoomed(false);
+  };
+
+  // ESC 키로 모달 닫기
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isImageZoomed) {
+        handleCloseZoom();
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isImageZoomed]);
+
+  // 확대 모달에서 이미지 네비게이션
+  const handleZoomPrevImage = (e) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev === 0 ? currentImages.length - 1 : prev - 1));
+  };
+
+  const handleZoomNextImage = (e) => {
+    e.stopPropagation();
     setCurrentImageIndex((prev) => (prev === currentImages.length - 1 ? 0 : prev + 1));
   };
 
@@ -91,7 +123,7 @@ export default function StudySupport() {
           </motion.button>
 
           {/* 이미지와 인디케이터 */}
-          <div className="image-section">
+          <div className="image-section" onClick={handleImageClick} style={{ cursor: 'pointer' }}>
             <motion.div
               className="image-container"
               key={`${selectedMonth}-${currentImageIndex}`}
@@ -107,7 +139,7 @@ export default function StudySupport() {
             </motion.div>
 
             {/* 인디케이터 */}
-            <div className="image-indicators">
+            <div className="image-indicators" onClick={(e) => e.stopPropagation()}>
               {currentImages.map((_, index) => (
                 <button
                   key={index}
@@ -119,7 +151,7 @@ export default function StudySupport() {
             </div>
 
             {/* 카운터 */}
-            <div className="image-counter">
+            <div className="image-counter" onClick={(e) => e.stopPropagation()}>
               {currentImageIndex + 1} / {currentImages.length}
             </div>
           </div>
@@ -135,6 +167,76 @@ export default function StudySupport() {
           </motion.button>
         </div>
       </motion.div>
+
+      {/* 이미지 확대 모달 */}
+      <AnimatePresence>
+        {isImageZoomed && (
+          <motion.div
+            className="image-zoom-modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleCloseZoom}
+          >
+            <motion.div
+              className="zoom-modal-content"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* 닫기 버튼 */}
+              <button
+                className="zoom-close-btn"
+                onClick={handleCloseZoom}
+                aria-label="닫기"
+              >
+                <FiX />
+              </button>
+
+              {/* 이전 버튼 */}
+              <button
+                className="zoom-nav-btn zoom-prev-btn"
+                onClick={handleZoomPrevImage}
+                aria-label="이전 이미지"
+              >
+                <FiChevronLeft />
+              </button>
+
+              {/* 확대된 이미지 */}
+              <motion.img
+                src={currentImages[currentImageIndex]}
+                alt={`${MONTH_NAMES[selectedMonth]} 행사 일정 ${currentImageIndex + 1}`}
+                className="zoomed-image"
+                key={`zoom-${selectedMonth}-${currentImageIndex}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              />
+
+              {/* 다음 버튼 */}
+              <button
+                className="zoom-nav-btn zoom-next-btn"
+                onClick={handleZoomNextImage}
+                aria-label="다음 이미지"
+              >
+                <FiChevronRight />
+              </button>
+
+              {/* 이미지 정보 */}
+              <div className="zoom-image-info">
+                <span className="zoom-counter">
+                  {currentImageIndex + 1} / {currentImages.length}
+                </span>
+                <span className="zoom-month">
+                  {MONTH_NAMES[selectedMonth]} 행사 일정
+                </span>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -160,6 +160,138 @@
   font-weight: 600;
 }
 
+/* 이미지 확대 모달 */
+.image-zoom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.zoom-modal-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 95vw;
+  max-height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zoomed-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.zoom-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  color: #333;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10001;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.zoom-close-btn:hover {
+  background: white;
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.zoom-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  color: #333;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10001;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.zoom-nav-btn:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.zoom-prev-btn {
+  left: 20px;
+}
+
+.zoom-next-btn {
+  right: 20px;
+}
+
+.zoom-image-info {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  backdrop-filter: blur(10px);
+}
+
+.zoom-counter {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.zoom-month {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* 이미지 컨테이너에 호버 효과 추가 */
+.image-container {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-section:hover .image-container {
+  transform: scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
 /* 반응형 - 태블릿 */
 @media (max-width: 1023px) {
   .study-support-page {
@@ -266,5 +398,45 @@
 
   .image-counter {
     font-size: 1rem;
+  }
+
+  .zoom-modal-content {
+    max-width: 98vw;
+    max-height: 98vh;
+  }
+
+  .zoom-close-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    top: 10px;
+    right: 10px;
+  }
+
+  .zoom-nav-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+  }
+
+  .zoom-prev-btn {
+    left: 10px;
+  }
+
+  .zoom-next-btn {
+    right: 10px;
+  }
+
+  .zoom-image-info {
+    bottom: 20px;
+    padding: 10px 20px;
+  }
+
+  .zoom-counter {
+    font-size: 0.9rem;
+  }
+
+  .zoom-month {
+    font-size: 0.8rem;
   }
 }

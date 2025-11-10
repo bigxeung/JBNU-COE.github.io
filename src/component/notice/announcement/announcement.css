@@ -26,12 +26,17 @@
 .search-form {
   display: flex;
   gap: 0.5rem;
+  flex: 1;
+  max-width: 100%;
+  min-width: 0; /* flex 아이템이 축소될 수 있도록 */
 }
 
 .search-input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
+  flex: 1;
+  max-width: 100%;
 }
 
 .search-icon {
@@ -48,6 +53,9 @@
   border-radius: 8px;
   font-size: 1rem;
   min-width: 250px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   transition: all 0.3s ease;
 }
 
