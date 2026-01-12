@@ -152,9 +152,8 @@ function HeaderBar({ isMobile }) {
                         <ul className="mobile-submenu">
                           <li><Link to="/notice/announcement" onClick={() => setMenuOpen(false)}>공지사항</Link></li>
                           <li><Link to="/notice/calendar" onClick={() => setMenuOpen(false)}>월별 행사</Link></li>
-                          <li><Link to="/notice/study-support" onClick={() => setMenuOpen(false)}>학습필력</Link></li>
+                          <li><Link to="/notice/study-support" onClick={() => setMenuOpen(false)}>심과함께</Link></li>
                           <li><Link to="/notice/pledge" onClick={() => setMenuOpen(false)}>공약 이행률</Link></li>
-                          <li><Link to="/notice/gallery" onClick={() => setMenuOpen(false)}>갤러리</Link></li>
                         </ul>
                       )}
                     </li>
@@ -184,6 +183,7 @@ function HeaderBar({ isMobile }) {
                           <li><Link to="/resources/constitution" onClick={() => setMenuOpen(false)}>공과대학 학생회칙</Link></li>
                           <li><Link to="/resources/finance" onClick={() => setMenuOpen(false)}>회계 내역 공개</Link></li>
                           <li><Link to="/resources/inspection" onClick={() => setMenuOpen(false)}>시설 정기 점검 결과</Link></li>
+                          <li><Link to="/notice/gallery" onClick={() => setMenuOpen(false)}>갤러리</Link></li>
                         </ul>
                       )}
                     </li>
