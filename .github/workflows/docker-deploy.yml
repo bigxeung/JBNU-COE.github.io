@@ -1,0 +1,55 @@
+name: Docker Deploy to JCloud
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # 수동 실행도 가능
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Deploy to VM via SSH
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.VM_HOST }}
+        username: ${{ secrets.VM_USER }}
+        key: ${{ secrets.VM_SSH_KEY }}
+        port: ${{ secrets.VM_PORT || 22 }}
+        script: |
+          # 프로젝트 디렉토리로 이동
+          cd ~/JBNU-COE.github.io || exit 1
+          
+          # Git 최신 코드 가져오기
+          git fetch origin
+          git reset --hard origin/main
+          git clean -fd
+          
+          # 환경 변수 파일 생성 (없으면 생성)
+          if [ ! -f .env ]; then
+            echo "REACT_APP_NAVER_CLIENT_ID=${{ secrets.REACT_APP_NAVER_CLIENT_ID }}" > .env
+            echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" >> .env
+          else
+            # .env 파일 업데이트
+            sed -i "s|REACT_APP_NAVER_CLIENT_ID=.*|REACT_APP_NAVER_CLIENT_ID=${{ secrets.REACT_APP_NAVER_CLIENT_ID }}|" .env
+            sed -i "s|REACT_APP_API_URL=.*|REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}|" .env
+          fi
+          
+          # Docker Compose로 빌드 및 재시작
+          # --build: 이미지 재빌드
+          # -d: 백그라운드 실행
+          # --force-recreate: 컨테이너 강제 재생성
+          docker compose down
+          docker compose up -d --build --force-recreate
+          
+          # 컨테이너 상태 확인
+          docker compose ps
+          
+          # 로그 확인 (최근 50줄)
+          echo "=== 최근 로그 ==="
+          docker compose logs --tail=50
+
