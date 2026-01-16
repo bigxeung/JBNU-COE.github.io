@@ -1,61 +1,36 @@
 // HeaderBar.jsx
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { HiMenu, HiX } from 'react-icons/hi';
 import './headerBar.css';
-import logoImg_blue from '../../img/embulum_blue.png';
 import logoImg_white from '../../img/embulum_white.png';
+
 function HeaderBar({ isMobile }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
-  const [isAtTop, setIsAtTop] = useState(true);
-  const location = useLocation();
 
   const toggleMenu = (menuName) => {
     setActiveMenu(activeMenu === menuName ? null : menuName);
   };
 
-  useEffect(() => {
-    const container = document.querySelector('.app-container');
-    const getScrollTop = () => (container ? container.scrollTop : window.scrollY);
-    const update = () => setIsAtTop(getScrollTop() <= 2);
-    update(); // 최초 렌더 시 위치 확인
-    const target = container || window;
-    target.addEventListener('scroll', update, { passive: true });
-    return () => target.removeEventListener('scroll', update);
-  }, []);
-
-  const p = (location.pathname || '').toLowerCase();
-  const isExempt = (p === '/'); // /about/intro는 제외하여 다른 페이지와 동일하게 반응형 색상 적용
-  const shouldBeBlueText = isAtTop && !isExempt;
-
   return (
     <>
-      <motion.header 
-        className={`header-bar ${shouldBeBlueText ? 'at-top-blue' : ''} ${!isAtTop ? 'header-scrolled' : ''}`}
-        animate={{
-          backgroundColor: isAtTop ? 'rgba(0,0,0,0)' : 'rgba(0,76,165,1)',
-          boxShadow: isAtTop ? '0 0 0 rgba(0,0,0,0)' : '0 2px 6px rgba(0,0,0,0.15)'
+      <header
+        className="header-bar header-scrolled"
+        style={{
+          backgroundColor: 'rgba(0,76,165,1)',
+          boxShadow: '0 2px 6px rgba(0,0,0,0.15)'
         }}
-        transition={{ duration: 0.4, ease: 'easeInOut' }}
       >
         <div className='header-left'>
           <div className="logo-size-lg">
             <Link to="/">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={isAtTop ? 'blue' : 'white'}
-                  src={isAtTop ? logoImg_blue : logoImg_white}
-                  className="logo-img"
-                  alt="로고"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  style={{ display: 'block', cursor: 'pointer' }}
-                />
-              </AnimatePresence>
+              <img
+                src={logoImg_white}
+                className="logo-img"
+                alt="로고"
+                style={{ display: 'block', cursor: 'pointer' }}
+              />
             </Link>
           </div>
         </div>
@@ -124,11 +99,11 @@ function HeaderBar({ isMobile }) {
 
         {isMobile && (
           <div className='header-right'>
-            <button 
-              className="menu-button" 
-              onClick={() => setMenuOpen(true)} 
+            <button
+              className="menu-button"
+              onClick={() => setMenuOpen(true)}
               aria-label="메뉴 열기"
-              style={{ color: shouldBeBlueText ? '#004ca5' : 'white' }}
+              style={{ color: 'white' }}
             >
               <HiMenu />
             </button>
@@ -198,7 +173,7 @@ function HeaderBar({ isMobile }) {
 
           </div>
         )}
-      </motion.header>
+      </header>
     </>
   );
 }

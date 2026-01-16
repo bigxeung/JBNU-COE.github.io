@@ -26,6 +26,7 @@ import Matching from './component/matching/Matching.jsx';
 import HeaderBar from './layouts/headerBar/headerBar.jsx';
 import Banner from './layouts/banner/banner.jsx';
 import TopBar from './layouts/topBar/topBar.jsx';
+import FloatingButton from './layouts/floatingButton/FloatingButton.jsx';
 import './App.css';
 
 import { useResponsive } from './component/hooks/useResponsive.jsx';
@@ -73,6 +74,8 @@ function App() {
         <div className='banner-container'>
             <Banner />
         </div>
+
+        <FloatingButton />
       </div>
 
     </BrowserRouter>

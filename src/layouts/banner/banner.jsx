@@ -1,4 +1,5 @@
 import React from 'react';
+import { RiKakaoTalkFill } from 'react-icons/ri';
 import './banner.css';
 import feelLogo from '../../img/feel_logo.png';
 
@@ -25,21 +26,34 @@ function Banner() {
             <div className="banner-address">
               [54896]전북특별자치도 전주시 덕진구 백제대로 567 공과대학 1호관 243호
             </div>
-            <a 
-              href="https://www.instagram.com/jbnu_coe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="instagram-container"
-            >
-              <div className="instagram-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                </svg>
-              </div>
-              <div className="instagram-username">jbnu_coe</div>
-            </a>
+            <div className="social-icons">
+              <a
+                href="https://www.instagram.com/jbnu_coe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link instagram-container"
+              >
+                <div className="instagram-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                </div>
+                <div className="social-username">jbnu_coe</div>
+              </a>
+              <a
+                href="https://open.kakao.com/o/suMsRU8h"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link kakao-container"
+              >
+                <div className="kakao-icon">
+                  <RiKakaoTalkFill />
+                </div>
+                <div className="social-username">오픈채팅</div>
+              </a>
+            </div>
           </div>
           <div className="banner-copyright">
             Copyright © Jeonbuk National University. All rights reserved.

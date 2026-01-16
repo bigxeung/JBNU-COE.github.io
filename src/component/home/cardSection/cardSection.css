@@ -1,12 +1,13 @@
 .card-section {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: stretch;
   color: white;
   gap: 0;
   padding: 0;
   height: 100%;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -14,10 +15,11 @@
 .card1, .card2, .card4 {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 33.33%; /* 기본: 3개 가로 나열 (PC 환경) */
-  padding: 2rem;
+  height: 100%;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   color: white;
@@ -26,6 +28,8 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  opacity: 0.75;
+  transform-origin: center bottom;
 }
 
 /* 카드 색상 지정 */
@@ -37,40 +41,39 @@
 .card1:hover,
 .card2:hover,
 .card4:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transform: scaleY(1.15);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.25);
 }
 
 /* 카드 활성 효과 (모바일 터치) */
 .card1:active,
 .card2:active,
 .card4:active {
-  transform: scale(0.98);
+  transform: scaleY(0.98);
+  opacity: 1;
 }
 
 .p {
   font-size: 5rem;
 }
 
-/* 📱 모바일: 3개 카드를 적절히 배치 */
+/* 📱 모바일: 3개 카드를 가로로 나열 */
 @media (max-width: 767px) {
   .card-section {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 100%;
+    height: 100%;
     gap: 0;
   }
 
   .card1, .card2, .card4 {
-    width: 50%;   /* 2개씩 배치 후 마지막 하나는 한 줄 차지 */
-    padding: 1.5rem 1rem;
-    min-height: 120px;
+    width: 33.33%;
+    height: 100%;
+    padding: 1.5rem 0.5rem 1rem 0.5rem;
+    min-height: auto;
     transition: all 0.3s ease;
-  }
-  
-  .card4 {
-    width: 100%; /* 마지막 카드는 전체 너비 */
-    min-height: 100px;
   }
 
   /* 모바일에서 호버 효과 제거하고 터치 피드백 강화 */
@@ -78,20 +81,22 @@
   .card2:hover,
   .card4:hover {
     transform: none;
+    opacity: 0.75;
   }
 
   .card1:active,
   .card2:active,
   .card4:active {
-    transform: scale(0.95);
-    opacity: 0.9;
+    transform: scaleY(0.95);
+    opacity: 1;
   }
 }
 
-/* 🧾 태블릿: 3개 카드를 적절히 배치 */
+/* 🧾 태블릿: 3개 카드를 가로로 나열 */
 @media (min-width: 768px) and (max-width: 1023px) {
   .card1, .card2, .card4 {
     width: 33.33%;
-    padding: 2rem;
+    height: 100%;
+    padding: 1.5rem;
   }
 }

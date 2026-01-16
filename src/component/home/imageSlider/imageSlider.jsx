@@ -20,10 +20,7 @@ function ImageSlider({ slides }) {
           prevEl: '.swiper-button-prev-custom',
           nextEl: '.swiper-button-next-custom',
         }}
-        pagination={{
-          clickable: true,
-          dynamicBullets: true
-        }}
+        pagination={false}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
