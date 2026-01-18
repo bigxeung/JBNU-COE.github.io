@@ -43,7 +43,7 @@ function Banner() {
                 <div className="social-username">jbnu_coe</div>
               </a>
               <a
-                href="https://open.kakao.com/o/suMsRU8h"
+                href="https://pf.kakao.com/_BHngn"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link kakao-container"
@@ -51,7 +51,7 @@ function Banner() {
                 <div className="kakao-icon">
                   <RiKakaoTalkFill />
                 </div>
-                <div className="social-username">오픈채팅</div>
+                <div className="social-username">채널</div>
               </a>
             </div>
           </div>
