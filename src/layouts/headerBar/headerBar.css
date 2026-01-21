@@ -1,7 +1,7 @@
 .header-bar {
     position: fixed;
     top: 40px;
-    height: 10vh;
+    height: clamp(60px, 10vh, 80px); /* 최소 60px 보장 (가로모드 대응) */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -387,7 +387,7 @@
 
   .header-bar {
     top: 40px; /* top bar 높이에 맞춤 */
-    height: 8vh;
+    height: clamp(55px, 8vh, 70px); /* 최소 55px 보장 */
   }
 
   .logo-size-lg {
@@ -407,7 +407,7 @@
     .header-bar {
       position: fixed;       /* 고정 */
       top: 30px;             /* 모바일 topBar 높이(30px)에 맞춤 - 여백 없음 */
-      height: 7vh;          /* 고정 높이 */
+      height: clamp(50px, 7vh, 60px); /* 최소 50px 보장 (가로모드 대응) */
       width: 100%;
       flex-direction: row;
       align-items: center;
@@ -457,4 +457,43 @@
       align-self: flex-end;
       cursor: pointer;
     }
+}
+
+/* 가로모드 (화면 높이가 낮을 때) - 핸드폰 가로모드 대응 */
+@media (max-height: 500px) and (orientation: landscape) {
+  .header-bar {
+    height: 50px; /* 가로모드에서 고정 높이 */
+    top: 25px;
+  }
+
+  .logo-img {
+    width: 100px;
+    height: auto;
+  }
+
+  .menu-button {
+    font-size: 1.5rem;
+    padding: 8px;
+    min-width: 44px; /* 터치 타겟 최소 크기 */
+    min-height: 44px;
+  }
+
+  .mobile-menu {
+    padding-top: 2rem;
+  }
+
+  .mobile-nav-list {
+    gap: 0.5rem;
+  }
+
+  .mobile-nav-button,
+  .mobile-nav-list li a {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .mobile-submenu li a {
+    padding: 0.4rem 0.5rem 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
 }
